@@ -49,7 +49,8 @@ class MyApp:
 		x1,y1,x2,y2 = drawpad.coords(player)
 		if (x1 >= targetx1 and y1 >= targety1) and (x2 <= targetx2 and y2 <= targety2):
 		    drawpad.itemconfig(target,fill = "blue")
-
+                else:
+                    drawpad.itemconfig(target,fill = "red")
 
 		# Ensure that we are doing our collision detection
 		# After we move our object!
