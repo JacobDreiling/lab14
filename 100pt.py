@@ -30,28 +30,42 @@ class MyApp:
 		self.myContainer1 = Frame(parent)
 		self.myContainer1.pack()
 		
-		self.button1 = Button(self.myContainer1)
-		self.button1.configure(text="Up", background= "green")
-		self.button1.grid(row=0,column=0)
-					
-		# "Bind" an action to the first button												
-		self.button1.bind("<Button-1>", self.button1Click)
-
-		  
+       	        self.ueber = Button(self.myContainer1)
+       	        self.ueber.configure(text="ueber", background= "red")
+       	        self.ueber.grid(row=0,column=1)
+       	        self.ueber.bind("<Button-1>", self.ueberClicked)
+       	    
+       	        self.unter = Button(self.myContainer1)
+       	        self.unter.configure(text="unter", background= "red")
+       	        self.unter.grid(row=2,column=1)
+       	        self.unter.bind("<Button-1>", self.unterClicked)
+       	    
+       	        self.linke = Button(self.myContainer1)
+       	        self.linke.configure(text="linke", background= "red")
+       	        self.linke.grid(row=1,column=0)
+       	        self.linke.bind("<Button-1>", self.linkeClicked)
+       	    
+       	        self.recht = Button(self.myContainer1)
+       	        self.recht.configure(text="recht", background= "red")
+       	        self.recht.grid(row=1,column=2)
+       	        self.recht.bind("<Button-1>", self.rechtClicked)
+	  
 		# This creates the drawpad - no need to change this 
 		drawpad.pack()
 		
 
 		
-	def button1Click(self, event):   
+	def ueberClicked(self, event):   
                 # "global" makes sure that we can access our oval and our drawpad
 		global oval
 		global drawpad
                 x1,y1,x2,y2 = drawpad.coords(player)
 		# Get the coords of our target
-
-
+                tx1, ty1, tx2, ty2 = drawpad.coords(target)
 		# Ensure that we are doing our collision detection
+		if y1 >= 0:
+		    drawpad.move(player, 0, -6.9)
+		    
 		# After we move our object!
                 didWeHit = collisionDetect()
                 if(didWeHit == True):
